@@ -31,7 +31,12 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "detctask.h"
+#include "runtask.h"
+#include "usdev.h"
+#include "mots.h"
 
+#include "cmsis_os2.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

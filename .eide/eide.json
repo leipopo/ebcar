@@ -10,6 +10,11 @@
     "files": [],
     "folders": [
       {
+        "name": "::CMSIS",
+        "files": [],
+        "folders": []
+      },
+      {
         "name": "Application",
         "files": [],
         "folders": [
@@ -26,19 +31,50 @@
             "name": "User",
             "files": [
               {
-                "path": "Src/main.c"
+                "path": "Src/freertos.c"
               },
               {
                 "path": "Src/gpio.c"
               },
               {
-                "path": "Src/stm32f1xx_it.c"
+                "path": "Src/main.c"
               },
               {
                 "path": "Src/stm32f1xx_hal_msp.c"
+              },
+              {
+                "path": "Src/stm32f1xx_it.c"
+              },
+              {
+                "path": "Src/tim.c"
               }
             ],
-            "folders": []
+            "folders": [
+              {
+                "name": "app",
+                "files": [
+                  {
+                    "path": "usr/app/src/detctask.c"
+                  },
+                  {
+                    "path": "usr/app/src/runtask.c"
+                  }
+                ],
+                "folders": []
+              },
+              {
+                "name": "dev",
+                "files": [
+                  {
+                    "path": "usr/dev/src/mots.c"
+                  },
+                  {
+                    "path": "usr/dev/src/usdev.c"
+                  }
+                ],
+                "folders": []
+              }
+            ]
           }
         ]
       },
@@ -51,12 +87,6 @@
             "files": [
               {
                 "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c"
               },
               {
                 "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c"
@@ -87,6 +117,12 @@
               },
               {
                 "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c"
               }
             ],
             "folders": []
@@ -101,19 +137,61 @@
             "folders": []
           }
         ]
+      },
+      {
+        "name": "Middlewares",
+        "files": [],
+        "folders": [
+          {
+            "name": "FreeRTOS",
+            "files": [
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/croutine.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/list.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/port.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/queue.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/tasks.c"
+              },
+              {
+                "path": "Middlewares/Third_Party/FreeRTOS/Source/timers.c"
+              }
+            ],
+            "folders": []
+          }
+        ]
       }
     ]
   },
   "outDir": "build",
-  "deviceName": null,
-  "packDir": null,
+  "deviceName": "STM32F103VE",
+  "packDir": ".pack/Keil/STM32F1xx_DFP.2.3.0",
   "miscInfo": {
-    "uid": "4cf38a33e3abbda186fb255660c52270"
+    "uid": "87d71802e5f7bd76149d59f25e7303a5"
   },
   "targets": {
     "ebcar": {
       "excludeList": [],
-      "toolchain": "AC6",
+      "toolchain": "AC5",
       "compileConfig": {
         "cpuType": "Cortex-M3",
         "floatingPointHardware": "none",
@@ -180,16 +258,20 @@
           "Drivers/STM32F1xx_HAL_Driver/Inc/Legacy",
           "Drivers/CMSIS/Device/ST/STM32F1xx/Include",
           "Drivers/CMSIS/Include",
-          ".cmsis/dsp_lib",
-          ".cmsis/include",
+          "Middlewares/Third_Party/FreeRTOS/Source/include",
+          "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2",
+          "Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3",
           "MDK-ARM/RTE/_ebcar",
-          ".eide/deps"
+          ".eide/deps",
+          "usr/app/inc",
+          "usr/dev/inc"
         ],
         "libList": [],
         "sourceDirList": [],
         "defineList": [
           "USE_HAL_DRIVER",
-          "STM32F103xE"
+          "STM32F103xE",
+          "STM32F10X_HD"
         ]
       }
     }
