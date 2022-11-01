@@ -37,6 +37,7 @@ extern "C" {
 #include "mots.h"
 
 #include "cmsis_os2.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -63,6 +64,10 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
+#define mottaskperiod 2 //ms
+#define ms2s(x) x/1000.f
+#define freq_ms(x) 1000.f/x
+#define flimf(max,min,val) fmaxf(fminf(max,val),min)
 
 /* USER CODE END Private defines */
 

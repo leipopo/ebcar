@@ -4,6 +4,6 @@ void detctask()
 {
     for(;;)
     {
-        osDelayUntil(2);
+        osDelayUntil(mottaskperiod);
     }
 }
