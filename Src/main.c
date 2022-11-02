@@ -91,6 +91,7 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   mot_init();
+  usdev_init();
   /* USER CODE END 2 */
 
   /* Init scheduler */

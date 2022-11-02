@@ -4,6 +4,6 @@ void runtask()
 {
     for(;;)
     {
-        osDelayUntil(mottaskperiod);
+        osDelay(mottaskperiod);
     }
 }

@@ -63,6 +63,15 @@
                 "folders": []
               },
               {
+                "name": "bsp",
+                "files": [
+                  {
+                    "path": "usr/bsp/src/bsp_delay.c"
+                  }
+                ],
+                "folders": []
+              },
+              {
                 "name": "dev",
                 "files": [
                   {
@@ -83,55 +92,55 @@
         "files": [],
         "folders": [
           {
-            "name": "STM32F1xx_HAL_Driver",
+            "name": "CMSIS",
             "files": [
               {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c"
-              },
-              {
-                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c"
+                "path": "Src/system_stm32f1xx.c"
               }
             ],
             "folders": []
           },
           {
-            "name": "CMSIS",
+            "name": "STM32F1xx_HAL_Driver",
             "files": [
               {
-                "path": "Src/system_stm32f1xx.c"
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c"
+              },
+              {
+                "path": "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c"
               }
             ],
             "folders": []
@@ -204,7 +213,7 @@
               "id": 1,
               "mem": {
                 "startAddr": "0x20000000",
-                "size": "0x5000"
+                "size": "0x10000"
               },
               "isChecked": true,
               "noInit": false
@@ -215,8 +224,8 @@
               "tag": "IROM",
               "id": 1,
               "mem": {
-                "startAddr": "0x08000000",
-                "size": "0x10000"
+                "startAddr": "0x8000000",
+                "size": "0x80000"
               },
               "isChecked": true,
               "isStartup": true
@@ -232,7 +241,7 @@
         "resetMode": "default",
         "runAfterProgram": true,
         "speed": 4000,
-        "address": "0x08000000",
+        "address": "0x8000000",
         "elFile": "None",
         "optionBytes": ".eide/ebcar.st.option.bytes.ini",
         "otherCmds": ""
@@ -264,7 +273,8 @@
           "MDK-ARM/RTE/_ebcar",
           ".eide/deps",
           "usr/app/inc",
-          "usr/dev/inc"
+          "usr/dev/inc",
+          "usr/bsp/inc"
         ],
         "libList": [],
         "sourceDirList": [],

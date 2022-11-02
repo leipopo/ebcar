@@ -25,6 +25,6 @@ typedef struct
 
 } pwm_speed_mot;
 
-void mot_init();
+void mot_init(void);
 
 #endif
