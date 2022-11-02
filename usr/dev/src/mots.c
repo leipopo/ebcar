@@ -3,6 +3,7 @@
 void mot_init()
 {
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 }
 
 void pwm_dutycycle_calc(pwm_speed_mot *sm)
