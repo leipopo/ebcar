@@ -1,4 +1,6 @@
 #ifndef USDEV_H
 #define USDEV_H
 
-#endif 
+extern uint8_t dis_fm;
+
+#endif
