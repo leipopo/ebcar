@@ -59,7 +59,7 @@ osThreadId_t run_taskHandle;
 const osThreadAttr_t run_task_attributes = {
   .name = "run_task",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityRealtime,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 
 /* Private function prototypes -----------------------------------------------*/

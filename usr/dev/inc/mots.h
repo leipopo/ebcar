@@ -26,6 +26,26 @@ typedef struct
 
 } pwm_speed_mot;
 
+#define default_pwmmot_config \
+    {                         \
+        {                     \
+            1000,             \
+            300,              \
+            1.f,              \
+        },                    \
+            {                 \
+                500.f,         \
+                300.f,         \
+                0.f,          \
+            },                \
+            {                 \
+                0,            \
+                1,            \
+                0,            \
+            },                \
+    }
+
 void mot_init(void);
+void pwm_speedmot_calc(pwm_speed_mot *sm);
 
 #endif

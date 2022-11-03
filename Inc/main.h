@@ -64,8 +64,8 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
-#define mottaskperiod 2 //ms
-#define fetctaskperiod 1 //ms
+#define mottaskperiod 10 //ms
+#define detctaskperiod 1 //ms
 #define ms2s(x) x/1000.f
 #define freq_ms(x) 1000.f/x
 #define flimf(max,min,val) fmaxf(fminf(max,val),min)

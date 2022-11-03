@@ -57,9 +57,9 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
                 }
 
                 if ((fabsf(dis_fm[samp_num] - dis) > 20.f) && (fabsf(dis_fm[samp_num] - dis) < 1000.f)) {
-                    dis_fm[samp_num] = dis_fm[samp_num] * 0.6 + dis * 0.4;
+                    dis_fm[samp_num] = dis_fm[samp_num] * 0.8 + dis * 0.2;
                 } else if (fabsf(dis_fm[samp_num] - dis) > 1000.f) {
-                    dis_fm[samp_num] = dis_fm[samp_num] * 0.2 + dis * 0.8;
+                    dis_fm[samp_num] = dis_fm[samp_num] * 0.6 + dis * 0.4;
                 }
 
                 // i++;//累加计数
