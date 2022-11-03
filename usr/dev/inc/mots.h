@@ -1,6 +1,7 @@
 #ifndef MOTS_H
 #define MOTS_H
 
+#include "stdint.h"
 #include "tim.h"
 
 typedef struct

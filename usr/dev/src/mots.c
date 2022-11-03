@@ -29,3 +29,5 @@ void pwm_speedmot_calc(pwm_speed_mot *sm)
     else if (sm->cur.power_percent < 0)
         sm->cur.dir = -1;
 }
+
+

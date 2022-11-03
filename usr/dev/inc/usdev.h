@@ -1,6 +1,6 @@
 #ifndef USDEV_H
 #define USDEV_H
-#include "main.h"
+#include "stdint.h"
 #define samp_num 20
 extern float dis_fm[samp_num+1];
 extern float dis;
