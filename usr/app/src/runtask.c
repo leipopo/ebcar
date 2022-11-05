@@ -1,7 +1,7 @@
 #include "main.h "
 
 run_date rundate;
-pwm_speed_mot wheel[2] = {default_pwmmot_config, default_pwmmot_config};
+pwm_speed_mot wheel[2] = {wheel0_config, wheel1_config};
 
 void maxpower_set(run_date *rd)
 {
@@ -9,7 +9,7 @@ void maxpower_set(run_date *rd)
         if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET) {
             rd->maxpower = 1;
         } else {
-            rd->maxpower = 0.3;
+            rd->maxpower = 0.3f;
         }
     } else {
         rd->maxpower = 0;
@@ -82,6 +82,7 @@ void wheel_ctrl()
 
 void runtask()
 {
+    
     for (;;) {
         rundate_update(wheel, &rundate);
         wheel_ctrl();
