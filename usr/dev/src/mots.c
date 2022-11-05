@@ -23,8 +23,10 @@ void pwm_speedmot_calc(pwm_speed_mot *sm)
 {
     pwm_dutycycle_calc(sm);
 
-    if (sm->cur.power_percent >= 0)
+    if (sm->cur.power_percent > 0.01f)
         sm->cur.dir = 1;
-    else if (sm->cur.power_percent < 0)
+    else if (sm->cur.power_percent < -0.01f)
         sm->cur.dir = -1;
+    else if ((sm->cur.power_percent <= 0.01f)&&(sm->cur.power_percent >= -0.01f))
+        sm->cur.dir = 0;
 }
