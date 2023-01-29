@@ -1,6 +1,4 @@
 #include "main.h"
-#include "tim.h"
-
 float dis_fm[samp_num + 1] = {
     NULL,
 };
@@ -18,11 +16,23 @@ void usdev_init(void)
     HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 }
 
+void ustrigger()
+{
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+    delay_us(20);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+}
+
+void LED_show(float num)
+{
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_4, (uint32_t)(ledmax_pwm - fminf(fmaxf(num - ledmax_pwm * 3, 0), ledmax_pwm)));
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_3, (uint32_t)(ledmax_pwm - fminf(fmaxf(num - ledmax_pwm * 2, 0), ledmax_pwm)));
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, (uint32_t)(ledmax_pwm - fminf(fmaxf(num - ledmax_pwm * 1, 0), ledmax_pwm)));
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, (uint32_t)(ledmax_pwm - fminf(fmaxf(num - ledmax_pwm * 0, 0), ledmax_pwm)));
+}
+
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-    /*防止未使用参数(s)编译警告*/
-    // UNUSED(htim);
-
     if (htim->Instance == htim3.Instance) {
         if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
             if (Channel1Edge == 0) // 捕获上升沿
@@ -30,16 +40,13 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
                 Channel1RisingTime = HAL_TIM_ReadCapturedValue(&htim3, TIM_CHANNEL_1);                  // 获取上升沿时间点
                 __HAL_TIM_SET_CAPTUREPOLARITY(&htim3, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING); // 切换捕获极性
                 HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1);                                             // 切换捕获极性后需重新启动
-
-                Channel1Edge = 1;         // 上升沿、下降沿捕获标志位
-            } else if (Channel1Edge == 1) // 捕获下降沿
+                Channel1Edge = 1;                                                                       // 上升沿、下降沿捕获标志位
+            } else if (Channel1Edge == 1)                                                               // 捕获下降沿
             {
                 Channel1FallingTime = HAL_TIM_ReadCapturedValue(&htim3, TIM_CHANNEL_1);                // 获取下降沿时间点
                 __HAL_TIM_SET_CAPTUREPOLARITY(&htim3, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING); // 切换捕获极性
                 HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1);                                            // 切换捕获极性后需重新启动
-
                 Channel1HighTime = Channel1FallingTime < Channel1RisingTime ? Channel1FallingTime + 0xffff - Channel1RisingTime + 1 : Channel1FallingTime - Channel1RisingTime;
-
                 // 高电平持续时间 = 下降沿时间点 - 上升沿时间点
                 float temp = 0;
                 for (int8_t i = 0; i < samp_num; i++) {
@@ -48,20 +55,16 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
                         temp = dis_fm[i];
                     }
                 }
-
                 dis = temp * 0.1 + dis * 0.9;
-
                 dis_fm[samp_num] = Channel1HighTime * 17.f / 100.f;
                 if (dis_fm[samp_num] > 4500.f) {
                     dis_fm[samp_num] = dis;
                 }
-
                 if ((fabsf(dis_fm[samp_num] - dis) > 20.f) && (fabsf(dis_fm[samp_num] - dis) < 1000.f)) {
                     dis_fm[samp_num] = dis_fm[samp_num] * 0.8 + dis * 0.2;
                 } else if (fabsf(dis_fm[samp_num] - dis) > 1000.f) {
                     dis_fm[samp_num] = dis_fm[samp_num] * 0.6 + dis * 0.4;
                 }
-
                 // i++;//累加计数
                 Channel1Edge = 0; // 一次采集完毕，清零
             }
